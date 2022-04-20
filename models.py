@@ -218,6 +218,12 @@ class JointEmbeddingModel:
     
     def predict(self, x, **kwargs):
         return self._sim_model.predict(x, **kwargs)
+    
+    def load(self, code_model_file, desc_model_file, **kwargs):
+        assert self._code_repr_model is not None, 'Must compile the model loading weights'
+        self._code_repr_model.load_weights(code_model_file, **kwargs)
+        assert self._desc_repr_model is not None, 'Must compile the model loading weights'
+        self._desc_repr_model.load_weights(desc_model_file, **kwargs)
 
  
  
